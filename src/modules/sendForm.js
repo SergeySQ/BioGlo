@@ -1,7 +1,8 @@
 "use strict";
 const sendForm = () => {
     const accordion = document.getElementById('accordion'),
-        allSelect = [...accordion.querySelectorAll('select')];
+        allSelect = [...accordion.querySelectorAll('select')],
+        options = document.querySelectorAll('.expand option');
     const statusMessage = document.createElement('img');
     statusMessage.src = './img/ajax-loader.gif';
     const successMessage = document.createElement('div'),
@@ -169,12 +170,17 @@ const sendForm = () => {
                 form.querySelectorAll('input').forEach(item => {
                     item.value = '';
                 });
-                document.querySelector('input[name="user_quest"]').value = '';
+                document.querySelector('input[name="user_quest"] ').value = '';
                 document.querySelector('.popup-call').style.cssText = 'display: none;';
                 document.querySelector('.popup-discount').style.cssText = 'display: none;';
                 document.querySelector('.popup-check').style.cssText = 'display: none;';
                 document.querySelector('.popup-consultation').style.cssText = 'display: none;';
+                document.querySelector('#calc-result').value = '';
+                for (var i = 0, l = options.length; i < l; i++) {
+                    options[i].selected = options[i].defaultSelected;
+                }
                 form.removeChild(successMessage);
+
             }, 3000);
 
 
